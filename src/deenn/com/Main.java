@@ -164,6 +164,8 @@ public class Main {
 //            }
 //            System.out.println(lookup);
             lookup2.put(letter,lookup2.containsKey(letter) ? lookup2.get(letter) + 1 : 1);
+
+            lookup2.merge(letter, 1, Integer::sum);
         }
         System.out.println(lookup2.entrySet());
 //        return true;
