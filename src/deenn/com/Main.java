@@ -1,9 +1,14 @@
 package deenn.com;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.text.DecimalFormat;
 import java.util.*;
 
 public class Main {
+
+
+
 
 //    public static int divisibleSumPairs(int k, List<Integer> ar) {
     // Write your code here
@@ -23,7 +28,31 @@ public class Main {
 
     //    }
     public static void main(String[] args) {
-        String hello = "I aaam veryyy happy";
+
+//        replacementSpaces(a,13);
+        String str = "aaabcde";
+        String aa = "abdacdc";
+//        System.out.println(permu(str,aa));
+        boolean[] charSet = new boolean[128];
+        System.out.println(uniqueChar(str));
+        System.out.println(Arrays.toString(charSet));
+        String s = "ddooog";
+        String t =  "ddooog";
+        System.out.println(permutations(s,t));
+        String hello = "abccde";
+        StringBuffer text1 = new StringBuffer(hello.substring(0,hello.length()/2));
+        StringBuffer text2 = new StringBuffer(hello.substring(hello.length()/2));
+        int count = 0;
+        for (int i = 0; i < text1.length(); i++) {
+
+             if (!String.valueOf(text1.charAt(i)).equals(String.valueOf(text2.charAt(i)))) {
+
+             }
+
+        }
+        System.out.println(count);
+        System.out.println(text1);
+        System.out.println(text2);
         Map<String, Integer> happy = new HashMap<>();
         for (int i = 0; i < hello.length(); i++) {
             String key = String.valueOf(hello.charAt(i));
@@ -218,4 +247,104 @@ public class Main {
      }
      return 1;
     }
+    public static boolean permutations(String s, String t) {
+        if (s.length() != t.length()) return false;
+//        char[] newS = s.toCharArray();
+//        Arrays.sort(newS);
+//        System.out.println(newS);
+//        char[] newT = t.toCharArray();
+//        Arrays.sort(newT);
+//        System.out.println(newT);
+//        return Arrays.equals(newS, newT);
+//
+       int[] letters = new int[128];
+////
+//
+       char[] ss = s.toCharArray();
+        System.out.println(Arrays.toString(ss));
+       for ( char c : ss) {
+           letters[c]++;
+           System.out.println(letters[c]);
+       }
+        System.out.println(Arrays.toString(ss));
+        for (int i = 0; i < t.length(); i++) {
+            int c = (int) t.charAt(i);
+            letters[c]--;
+            System.out.println(letters[c]);
+            if (letters[c] < 0) return false;
+        }
+       return true;
+    }
+
+//    Unique Character set
+    public static boolean uniqueChar(String str) {
+        if (str.length() > 128) return false;
+
+        boolean[] charSet = new boolean[128];
+        for (int i = 0; i < str.length(); i++) {
+            int val = str.charAt(i);
+            if (charSet[val]) {
+                return false;
+            }
+            charSet[val] = true;
+        }
+        return true;
+    }
+    public static boolean permu(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        int[] charset = new int[128];
+        char[] s_array = s.toCharArray();
+
+        for ( char c : s_array) {
+            charset[c]++;
+        }
+        for (int i = 0; i < t.length(); i++) {
+            int c = t.charAt(i);
+            charset[c]--;
+            if (charset[c] < 0) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+    public static double power(double x, int n) {
+        if (n == 0) return 1;
+        if (n < 0) {
+            n = Math.abs(n);
+            return (1/ (x * power(x, n - 1)));
+        } else {
+            return x * power(x, n - 1);
+        }
+    }
+
+    public static boolean uniqueString(String c) {
+        if (c.length() > 128) return false;
+        boolean[] cSet = new boolean[128];
+        for (int i = 0; i < c.length(); i++) {
+            int val = c.charAt(i);
+            if (!cSet[val]) {
+                return false;
+            }
+            cSet[val] = true;
+        }
+        return true;
+    }
+    public static boolean permus(String s, String t) {
+        if (s.length() != t.length()) return false;
+        int[] letters = new int[128];
+        char[] sArray = s.toCharArray();
+        for (char c : sArray) {
+
+            letters[c]++;
+        }
+        for (int i = 0; i < t.length(); i++) {
+            int c = t.charAt(i);
+            letters[c]--;
+            if (letters[c] < 0) return false;
+        }return true;
+    }
+
 }
